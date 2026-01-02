@@ -9,7 +9,7 @@ print(todos)
 while True:
     user_response = input(user_input).strip()
 
-    if "show" in user_response or "display" in user_response:
+    if user_response.startswith('show') or user_response.startswith('display'):
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
 
@@ -19,7 +19,7 @@ while True:
         else:
             print("No todos to display.")
 
-    elif "add" in user_response:
+    elif user_response.startswith('add'):
 
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
@@ -31,7 +31,7 @@ while True:
         with open("todos.txt", "w") as file:
             file.writelines(todos)
 
-    elif "edit" in user_response:
+    elif user_response.startswith('edit'):
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
         if todos:
@@ -49,7 +49,8 @@ while True:
             if this_one.isdigit():
                 this_one = int(this_one)
                 if 1 <= this_one <= len(todos):
-                    new_value = input("Enter the new value for the todo: ").capitalize() + "\n"
+                    # new_value = input("Enter the new value for the todo: ").capitalize() + "\n"
+                    new_value = input("Enter the new value for the todo: ") + "\n"
                     todos[this_one - 1] = new_value  # Replace the item in the list
                     with open(file_path, "w") as file:
                         file.writelines(todos)
@@ -62,7 +63,7 @@ while True:
         else:
             print("No todos to edit.")
 
-    elif "complete" in user_response:
+    elif user_response.startswith('complete'):
         with open("todos.txt", "r") as file:
             todos = file.readlines()
         if todos:
@@ -83,14 +84,17 @@ while True:
                     with open(file_path, 'w') as file:
                         file.writelines(todos)
                     print(f"Todo completed and removed: {removed_todo}")
+                    for index, item in enumerate(todos):
+                        print(f"{index + 1}. {item.strip('\n')}")
                 else:
                     print(f"Invalid selection, please select between 1-{len(todos)}")
             else:
                 print("Invalid input! Please enter a number.")
+
         else:
             print("No todos to complete.")
 
-    elif "exit" in user_response:
+    elif user_response.startswith('exit'):
         print("Bye!")
         break
     else:
