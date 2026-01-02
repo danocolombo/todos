@@ -1,3 +1,5 @@
 plant
 water
 fertilize
+harvest
+eat
