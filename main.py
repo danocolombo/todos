@@ -63,16 +63,21 @@ while True:
             print("No todos to edit.")
 
     elif "complete" in user_response:
+        with open("todos.txt", "r") as file:
+            todos = file.readlines()
         if todos:
-            print("Which todo would you like to mark as complete?")
-            for index, todo in enumerate(todos, start=1):
-                print(f"{index}. {todo.strip('\n')}")
+            if len(user_response) > 8:
+                todo_to_complete = user_response[9:]
+            else:
+                print("Which todo would you like to mark as complete?")
+                for index, todo in enumerate(todos, start=1):
+                    print(f"{index}. {todo.strip('\n')}")
 
-            selection = input(f"Enter the number of the todo to complete (1-{len(todos)}): ")
+                todo_to_complete = input(f"Enter the number of the todo to complete (1-{len(todos)}): ")
 
             # Validate the input
-            if selection.isdigit():
-                selection = int(selection)
+            if todo_to_complete.isdigit():
+                selection = int(todo_to_complete)
                 if 1 <= selection <= len(todos):
                     removed_todo = todos.pop(selection - 1)  # Remove the selected todo
                     with open(file_path, 'w') as file:
