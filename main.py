@@ -84,4 +84,5 @@ while True:
     elif "exit" in user_response:
         print("Bye!")
         break
-
+    else:
+        print("Invalid command. Please enter show, add, edit, complete or exit.")
