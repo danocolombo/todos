@@ -1,5 +1,5 @@
 plant
 water
 fertilize
-harvest
+Pick
 eat

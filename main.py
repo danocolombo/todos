@@ -35,11 +35,15 @@ while True:
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
         if todos:
-            print("Which todo would you like to change?")
-            for index, todo in enumerate(todos, start=1):  # Display todos with 1-based indexing
-                print(f"{index}. {todo.strip('\n')}")
+            this_one = -1
+            if len(user_response) > 4:
+                this_one = user_response[5:]
+            else:
+                print("Which todo would you like to change?")
+                for index, todo in enumerate(todos, start=1):  # Display todos with 1-based indexing
+                    print(f"{index}. {todo.strip('\n')}")
 
-            this_one = input(f"Enter the number of the todo to change (1-{len(todos)}): ")
+                this_one = input(f"Enter the number of the todo to change (1-{len(todos)}): ")
 
             # Validate the input
             if this_one.isdigit():
