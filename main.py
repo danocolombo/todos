@@ -19,7 +19,7 @@ while True:
         else:
             print("No todos to display.")
 
-    if "add" in user_response:
+    elif "add" in user_response:
 
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
@@ -31,7 +31,7 @@ while True:
         with open("todos.txt", "w") as file:
             file.writelines(todos)
 
-    if "edit" in user_response:
+    elif "edit" in user_response:
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
         if todos:
@@ -58,7 +58,7 @@ while True:
         else:
             print("No todos to edit.")
 
-    if "complete" in user_response:
+    elif "complete" in user_response:
         if todos:
             print("Which todo would you like to mark as complete?")
             for index, todo in enumerate(todos, start=1):
@@ -81,7 +81,7 @@ while True:
         else:
             print("No todos to complete.")
 
-    if "exit" in user_response:
+    elif "exit" in user_response:
         print("Bye!")
         break
 
